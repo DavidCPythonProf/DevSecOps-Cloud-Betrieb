@@ -1,0 +1,10 @@
+/flask-webserver
+├── app.py                  # Anwendungscode
+├── requirements.txt        # Python-Abhängigkeiten (flask==3.1.0)
+├── Dockerfile              # Container-Build-Definition
+├── .github/workflows/
+│   └── pipeline.yml        # GitHub Actions Pipeline-Definition
+├── terraform/
+│   └── main.tf             # IaC: Cloud-Infrastruktur (z.B. Kubernetes-Cluster auf GKE)
+└── k8s/
+    └── deployment.yaml     # Kubernetes-Manifest (Deployment + Service)
