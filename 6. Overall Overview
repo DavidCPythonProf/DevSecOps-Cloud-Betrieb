@@ -1,0 +1,19 @@
+git push main
+     │
+     ▼
+[1] Build       → Docker Multi-Stage Image (ghcr.io/team/flask-app:abc1234)
+     │
+     ▼
+[2] Test        → pytest: /, /name/<name>, /datetime  ✓
+     │
+     ▼
+[3] Scan        → Bandit (SAST) + Trivy (CVE-Scan)    ✓
+     │
+     ▼
+[4] Push        → Image in Container-Registry
+     │
+     ▼
+[5] GitOps      → Pipeline aktualisiert k8s/deployment.yaml im Git
+     │
+     ▼
+[6] Sync        → ArgoCD erkennt Änderung → Rolling Update auf Kubernetes-Cluster
