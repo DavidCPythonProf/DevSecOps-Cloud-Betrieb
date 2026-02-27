@@ -1,0 +1,9 @@
+>> Issue: [B201:flask_debug_true] A Flask app appears to be run with debug=True,
+   which exposes the Werkzeug debugger and allows remote code execution.
+   Severity: HIGH   Confidence: MEDIUM
+   Location: app.py, line 17
+
+>> Issue: [B703:django_mark_safe / equivalent] Potential XSS via unescaped
+   user input passed to format string.
+   Severity: MEDIUM   Confidence: HIGH
+   Location: app.py, line 11
