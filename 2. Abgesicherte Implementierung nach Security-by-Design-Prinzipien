@@ -1,0 +1,33 @@
+from flask import Flask, escape
+import os
+import re
+import datetime as dt
+
+app = Flask(__name__)
+
+@app.route('/')
+def hello_world():
+    return 'Hello, World!\n'
+
+@app.route('/name/<name>')
+def hello_name(name):
+    # Eingabevalidierung: nur alphanumerische Zeichen + Leerzeichen erlaubt
+    if not re.match(r'^[a-zA-Z0-9 ]{1,50}$', name):
+        return 'Ungültige Eingabe.\n', 400
+    safe_name = escape(name)  # XSS-Schutz: HTML-Encoding
+    return f'Hello, {safe_name}!\n'
+
+@app.route('/datetime')
+def get_datetime():
+    # Namenskonflikt behoben durch Alias dt
+    now = dt.datetime.now()
+    return now.strftime("%Y-%m-%d %H:%M:%S\n")
+
+if __name__ == '__main__':
+    # Konfiguration aus Umgebungsvariablen – keine hartcodierten Werte
+    debug_mode = os.environ.get('FLASK_DEBUG', 'false').lower() == 'true'
+    app.run(
+        debug=debug_mode,   # Secure Default: Debug nur wenn explizit gesetzt
+        host='127.0.0.1',   # Minimal Exposure: nur Loopback, kein 0.0.0.0
+        port=5000           # Unprivilegierter Port, TLS über Reverse Proxy
+    )
